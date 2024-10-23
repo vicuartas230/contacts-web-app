@@ -1,0 +1,17 @@
+@media (min-width: 992px) {
+    .card {
+        min-width: 80vh;
+    }
+}
+
+@media (min-width: 766px) {
+    .card {
+        min-width: 75vh;
+    }
+}
+
+@media (min-width : 359px) {
+    .card {
+        min-width: 30vh;
+    }
+}
