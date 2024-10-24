@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const baseURL = "/contacts/";
+const baseURL = '/contacts/';
 
-export const getContact = (id) => {
-    return axios.get(`${baseURL}${id}`, {
+export const deleteContact = id => {
+    return axios.delete(`${baseURL}${id}`, {
         auth: {
             username: 'ICXCandidate',
             password: 'Welcome2024'

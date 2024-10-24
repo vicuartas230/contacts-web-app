@@ -1,16 +1,22 @@
 import { Form } from "../components/form";
-import { useState } from "react";
-import { getContact } from "../api/contacts.api";
+import { getContact } from "../api/get.api";
+import { useNavigate } from "react-router-dom";
 
 export function GetContacts() {
-    const [contacts, setContacts] = useState([]);
+    const navigate = useNavigate();
 
     async function handleFormSubmit(data) {
-        console.log(await getContact(26));
+        const res = await getContact(data.firstName,
+                                     data.lastName,
+                                     data.email,
+                                     data.phone,
+                                     data.city);
+        navigate('/displayContacts', { state: { contacts: res.data.items } });
     };
 
     return (
         <div>
+            <a href="/create">Crear</a>
             <Form onSubmit={handleFormSubmit} />
         </div>
     );
