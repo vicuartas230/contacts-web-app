@@ -30,6 +30,8 @@ export const getContact = async (firstName='', lastName='', email='', phone='', 
         if (city) query.push(`address.city='${city}'`);
     
         const q = `?q=${query.join(' AND ')}`;
+
+        console.log("QUERY COMPLETED!!!!!", q);
     
         const res = await axios.get(`${baseURL}${q}`, {
             auth: {
@@ -37,6 +39,8 @@ export const getContact = async (firstName='', lastName='', email='', phone='', 
                 password: 'Welcome2024'
             }
         });
+
+        console.log("AFTER QUERY TO THE API WITH AXIOS!!!!!", res);
 
         await axios.post(`${backUpURL}`, {
             query: q
