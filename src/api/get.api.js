@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "/contacts/";
+const baseURL = "https://imaginecx--tst2.custhelp.com/services/rest/connect/v1.3/contacts/";
 
 export const getContact = (firstName='', lastName='', email='', phone='', city='') => {
     let query = [];
@@ -27,8 +27,8 @@ export const getContact = (firstName='', lastName='', email='', phone='', city='
     if (phone) query.push(`phones.number='${phone}'`);
     if (city) query.push(`address.city='${city}'`);
 
-    const q = `?q=${query.join(' AND ')}`
-    console.log(q);
+    const q = `?q=${query.join(' AND ')}`;
+
     return axios.get(`${baseURL}${q}`, {
         auth: {
             username: 'ICXCandidate',

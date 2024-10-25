@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ConfirmationModal } from "./confirmationModal";
+import { getFullData } from "../api/expandData";
 
 
 export const ContactsTable = ({ data, deleteContact }) => {
@@ -10,6 +11,12 @@ export const ContactsTable = ({ data, deleteContact }) => {
         setSelectedContact(contact);
         setShowModal(true);
     }
+
+    const amplifyData = async (id) => {
+        const res = await getFullData(id);
+        console.log(res);
+    };
+
     return (
         <div className="container mt-5">
             <table className="table">
@@ -24,7 +31,7 @@ export const ContactsTable = ({ data, deleteContact }) => {
                 <tbody>
                     {data.map((item) => (
                         <tr className="table-light">
-                            <td>{item.id}</td>
+                            <td><button onClick={() => amplifyData(item.id)}>{item.id}</button></td>
                             <td>{item.lookupName ? item.lookupName : "null"}</td>
                             <td>
                                 <a href={`/update/${item.id}`} className="btn btn-warning"><i className="bi bi-pencil-square"></i></a>
