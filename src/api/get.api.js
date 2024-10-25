@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "/contacts";
+const baseURL = "https://74o11y8fl6.execute-api.us-east-1.amazonaws.com/contacts";
 const backUpURL = "http://localhost:3001/queries"
 
 export const getContact = async (firstName='', lastName='', email='', phone='', city='') => {
