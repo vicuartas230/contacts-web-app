@@ -11,6 +11,10 @@ export function Form({ onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (Object.values(data).every((el) => !el)) {
+            alert("Al menos uno de los campos debe ser diligenciado.");
+            return;
+        }
         onSubmit(data);
     };
 

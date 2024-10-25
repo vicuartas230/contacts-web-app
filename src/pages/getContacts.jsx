@@ -11,7 +11,12 @@ export function GetContacts() {
                                      data.email,
                                      data.phone,
                                      data.city);
-        navigate('/displayContacts', { state: { contacts: res.data.items } });
+        if (!res.data.items.length) {
+            alert("La búsqueda no arrojó ningún resultado");
+            navigate('/');
+        } else {
+            navigate('/displayContacts', { state: { contacts: res.data.items } });
+        }
     };
 
     return (
