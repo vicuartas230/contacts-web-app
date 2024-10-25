@@ -19,6 +19,9 @@ export function UpdateContact() {
 
     return (
         <div>
+            <a href="/">Home</a>
+            <br/>
+            <a href="/create">Create</a>
             <Form onSubmit={handleSubmit} />
         </div>
     )

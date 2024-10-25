@@ -30,7 +30,7 @@ export const ContactsTable = ({ data, deleteContact }) => {
                 </thead>
                 <tbody>
                     {data.map((item) => (
-                        <tr className="table-light">
+                        <tr className="table-light" key={item.id}>
                             <td><button onClick={() => amplifyData(item.id)}>{item.id}</button></td>
                             <td>{item.lookupName ? item.lookupName : "null"}</td>
                             <td>

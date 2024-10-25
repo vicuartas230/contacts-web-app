@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'https://imaginecx--tst2.custhelp.com/services/rest/connect/v1.3/contacts/';
+const baseURL = '/contacts/';
 
 export const createContact = (firstName='', lastName='', email='', phone='', city='') => {
     let body = {}

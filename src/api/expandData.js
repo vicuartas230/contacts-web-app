@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const baseURL = 'https://imaginecx--tst2.custhelp.com/services/rest/connect/v1.3/contacts/';
+const baseURL = '/contacts/';
 
 export const getFullData = async (id) => {
+    const url = `${baseURL}${id}`
     const fullData = {};
     const configRequest = {
         auth: {
@@ -11,20 +12,44 @@ export const getFullData = async (id) => {
         }
     };
 
-    const res = await axios.get(`${baseURL}${id}`, configRequest);
+    const res = await axios.get(url, configRequest);
 
-    console.log("Initial res: ",res);
+    fullData.firstName = res.data.name.first;
+    fullData.lastName = res.data.name.last;
+    fullData.city = res.data.address.city;
 
+    
     const emailsLink = res.data.phones.links.find(link => link.rel === 'self')?.href;
     const phonesLink = res.data.emails.links.find(link => link.rel === 'self')?.href;
-
+    
     if (emailsLink) {
-        const emailsRes = await axios.get(emailsLink, configRequest);
-        console.log("Email res: ", emailsRes);
+        const emailsRes = await axios.get(
+            `${url}/emails`,
+            configRequest
+        );
+        const emailsList = emailsRes.data.items
+        if (emailsList.length) {
+            const email = await axios.get(
+                `${url}/emails/0`,
+                configRequest
+            );
+            fullData.email = email.data.address;
+        }
     }
-
+    
     if (phonesLink) {
-        const phonesRes = await axios.get(phonesLink, configRequest);
-        console.log("Phones res: ", phonesRes);
+        const phonesRes = await axios.get(
+            `${url}/phones`,
+            configRequest
+        );
+        const phonesList = phonesRes.data.items;
+        if (phonesList.length) {
+            const phone = await axios.get(
+                `${url}/phones/1`,
+                configRequest
+            );
+            fullData.phone = phone.data.number;
+        }
     }
+    return fullData;
 };

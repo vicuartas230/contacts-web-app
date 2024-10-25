@@ -28,6 +28,8 @@ export const DisplayContacts = () => {
     return (
         <>
             <a href='/'>Home</a>
+            <hr/>
+            <a href='/create'>Create</a>
             <ContactsTable data={newData} deleteContact={remove} />
             <Pagination
                 contactsPerPage={contactsPerPage}
