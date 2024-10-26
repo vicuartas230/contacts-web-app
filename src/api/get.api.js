@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "https://74o11y8fl6.execute-api.us-east-1.amazonaws.com/contacts";
+// const baseURL = "/contacts";
+const baseURL = "http://localhost:3001/contacts"
 const backUpURL = "http://localhost:3001/queries"
 
 export const getContact = async (firstName='', lastName='', email='', phone='', city='') => {
@@ -31,16 +32,12 @@ export const getContact = async (firstName='', lastName='', email='', phone='', 
     
         const q = `?q=${query.join(' AND ')}`;
 
-        console.log("QUERY COMPLETED!!!!!", q);
-    
         const res = await axios.get(`${baseURL}${q}`, {
             auth: {
                 username: 'ICXCandidate',
                 password: 'Welcome2024'
             }
         });
-
-        console.log("AFTER QUERY TO THE API WITH AXIOS!!!!!", res);
 
         await axios.post(`${backUpURL}`, {
             query: q
