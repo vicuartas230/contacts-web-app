@@ -1,9 +1,15 @@
 import '../styles/form.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
-export function Form({ onSubmit }) {
+export function Form({ onSubmit, contact }) {
     const [data, setData] = useState({firstName: '', lastName: '', email: '', phone: '', city: ''});
+
+    useEffect(() => {
+        if (contact) {
+            setData(contact);
+        }
+    }, [contact]);
 
     const handleChange = (e) => {
         setData({...data, [e.target.name]: e.target.value});
@@ -11,10 +17,6 @@ export function Form({ onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (Object.values(data).every((el) => !el)) {
-            alert("Al menos uno de los campos debe ser diligenciado.");
-            return;
-        }
         onSubmit(data);
     };
 
@@ -42,7 +44,9 @@ export function Form({ onSubmit }) {
                         <label htmlFor="city" className="form-label">Ciudad:</label>
                         <input type="text" name="city" value={data.city} onChange={handleChange} className="form-control" />
                     </div>
-                    <button type="submit" onClick={handleSubmit} className="btn btn-primary mx-auto">Enviar</button>
+                    <div className="d-flex">
+                        <button type="submit" onClick={handleSubmit} className="btn btn-primary mx-auto">Enviar</button>
+                    </div>
                 </form>
             </div>
         </div>

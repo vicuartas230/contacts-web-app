@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const baseURL = "/contacts";
-const baseURL = "http://localhost:3001/contacts"
+const baseURL = "/contacts/"
 const backUpURL = "http://localhost:3001/queries"
 
 export const getContact = async (firstName='', lastName='', email='', phone='', city='') => {
@@ -39,14 +39,14 @@ export const getContact = async (firstName='', lastName='', email='', phone='', 
             }
         });
 
-        await axios.post(`${backUpURL}`, {
-            query: q
-        });
+        // await axios.post(`${backUpURL}`, {
+        //     query: q
+        // });
 
         return res;
 
     } catch (err) {
         console.error("Web service desconectado. Obteniendo datos de la base de datos de respaldo.");
-        return axios.get(`${backUpURL}`);
+        // return axios.get(`${backUpURL}`);
     }
 };

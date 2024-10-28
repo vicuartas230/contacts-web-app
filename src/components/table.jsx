@@ -1,20 +1,24 @@
 import { useState } from "react";
-import { ConfirmationModal } from "./confirmationModal";
 import { getFullData } from "../api/expandData";
+import { ContactModal } from "./contact";
 
 
-export const ContactsTable = ({ data, deleteContact }) => {
+export const ContactsTable = ({ tableData }) => {
     const [showModal, setShowModal] = useState(false);
-    const [selectedContact, setSelectedContact] = useState(null);
+    const [data, setData] = useState({});
+    const [contactId, setContactId] = useState('');
 
-    const handleDelete = (contact) => {
-        setSelectedContact(contact);
-        setShowModal(true);
-    }
 
     const amplifyData = async (id) => {
         const res = await getFullData(id);
-        console.log(res);
+        setData({...res});
+        setShowModal(true);
+        setContactId(id);
+        console.log(data);
+    };
+
+    const handleClose = () => {
+        setShowModal(false);
     };
 
     return (
@@ -23,37 +27,26 @@ export const ContactsTable = ({ data, deleteContact }) => {
                 <thead>
                     <tr className="table-dark">
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th>Nombre(s)</th>
+                        <th>Apellido(s)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((item) => (
+                    {tableData.map((item) => (
                         <tr className="table-light" key={item.id}>
-                            <td><button onClick={() => amplifyData(item.id)}>{item.id}</button></td>
-                            <td>{item.lookupName ? item.lookupName : "null"}</td>
-                            <td>
-                                <a href={`/update/${item.id}`} className="btn btn-warning"><i className="bi bi-pencil-square"></i></a>
-                            </td>
-                            <td>
-                                <button type="button"
-                                        className="btn btn-danger"
-                                        onClick={() => handleDelete(item)}
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#staticBackdrop">
-                                            <i className="bi bi-trash-fill"></i>
-                                </button>
-                            </td>
+                            <td><button onClick={() => amplifyData(item.id)} className="btn btn-primary">{item.id}</button></td>
+                            <td>{item.lookupName.split(' ')[0] ? item.lookupName.split(' ')[0] : "null"}</td>
+                            <td>{item.lookupName.split(' ')[1] ? item.lookupName.split(' ')[1] : "null"}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            {selectedContact && (
-                <ConfirmationModal
+            {showModal && (
+                <ContactModal
                     display={showModal}
-                    handleDelete={deleteContact}
-                    contact={selectedContact}
+                    fields={data}
+                    id={contactId}
+                    onClose={handleClose}
                 />
             )}
         </div>
