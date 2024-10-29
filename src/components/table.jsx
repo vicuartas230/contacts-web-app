@@ -1,24 +1,18 @@
 import { useState } from "react";
 import { getFullData } from "../api/expandData";
-import { ContactModal } from "./contact";
+import { useNavigate } from "react-router-dom";
 
 
 export const ContactsTable = ({ tableData }) => {
-    const [showModal, setShowModal] = useState(false);
-    const [data, setData] = useState({});
-    const [contactId, setContactId] = useState('');
-
+    const navigate = useNavigate();
 
     const amplifyData = async (id) => {
-        const res = await getFullData(id);
-        setData({...res});
-        setShowModal(true);
-        setContactId(id);
-        console.log(data);
-    };
-
-    const handleClose = () => {
-        setShowModal(false);
+        try {
+            const res = await getFullData(id);
+            navigate(`/displayContact/${id}`, { state: { contact: res } })
+        } catch (error) {
+            console.error("No se pudo obtener datos.")
+        }
     };
 
     return (
@@ -41,14 +35,6 @@ export const ContactsTable = ({ tableData }) => {
                     ))}
                 </tbody>
             </table>
-            {showModal && (
-                <ContactModal
-                    display={showModal}
-                    fields={data}
-                    id={contactId}
-                    onClose={handleClose}
-                />
-            )}
         </div>
     );
 };

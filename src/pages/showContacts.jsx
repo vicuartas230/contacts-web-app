@@ -1,8 +1,7 @@
 import { ContactsTable } from "../components/table";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Pagination } from "../components/pagination";
-import { useState } from "react";
-import { deleteContact } from "../api/delete.api";
+import { useMemo, useState } from "react";
 
 export const DisplayContacts = () => {
     const loc = useLocation();
@@ -12,24 +11,15 @@ export const DisplayContacts = () => {
 
     const lastContact = currentPage * contactsPerPage;
     const firstContact = lastContact - contactsPerPage;
-    const newData = contacts.slice(firstContact, lastContact);
+    const newData = useMemo(() => contacts.slice(firstContact, lastContact), [contacts, currentPage]);
 
     const changePage = (pageNumber) => setCurrentPage(pageNumber);
 
-    const remove = async (id) => {
-        console.log("ID: ", id);
-        try {
-            await deleteContact(id);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
     return (
         <>
-            <a href='/'>Home</a>
+            <Link to='/'>Inicio</Link>
             <hr/>
-            <a href='/create'>Create</a>
+            <Link to='/create'>Crear</Link>
             <ContactsTable
                 tableData={newData}
             />

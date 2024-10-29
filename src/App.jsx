@@ -4,18 +4,18 @@ import { GetContacts } from './pages/getContacts';
 import { CreateContact } from './pages/createContact';
 import { UpdateContact } from './pages/updateContact';
 import { DisplayContacts } from './pages/showContacts';
-import { ContactUpdated } from './pages/updated';
+import { DisplayContact } from './pages/displayContact';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to='/get' />} />
-        <Route path="/get" element={<GetContacts />} />
-        <Route path="/create" element={<CreateContact />} />
-        <Route path="/update/:id" element={<UpdateContact />} />
-        <Route path="/displayContacts" element={<DisplayContacts />} />
-        <Route path="/contactUpdated" element={<ContactUpdated />} />
+        <Route exact path="/" element={<Navigate to='/get' />} />
+        <Route exact path="/get" element={<GetContacts />} />
+        <Route exact path="/create" element={<CreateContact />} />
+        <Route exact path="/update/:id" element={<UpdateContact />} />
+        <Route exact path="/displayContacts" element={<DisplayContacts />} />
+        <Route exact path="/displayContact/:id" element={<DisplayContact />} />
       </Routes>
     </BrowserRouter>
   )
