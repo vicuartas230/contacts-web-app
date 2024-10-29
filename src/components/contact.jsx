@@ -14,18 +14,6 @@ export const ContactModal = ({ display, fields, id, onClose }) => {
         if (display) {
             const modal = new window.bootstrap.Modal(document.getElementById('contactModal'));
             modal.show();
-
-            const modalElement = document.getElementById('contactModal');
-            modalElement.addEventListener('hidden.bs.modal', () => {
-                onClose();
-                const modalContactModal = document.querySelector('.modal-backdrop');
-                if (modalContactModal) {
-                    modalContactModal.parentNode.removeChild(modalContactModal);
-                }
-                modalElement.classList.remove('show');
-                modalElement.setAttribute('aria-hidden', true);
-                modalElement.removeAttribute('aria-modal');
-            });
         }
     }, [display]);
 
@@ -47,6 +35,7 @@ export const ContactModal = ({ display, fields, id, onClose }) => {
     };
 
     const handleUpdateClick = () => {
+        setShow(false);
         navigate(`/update/${id}`, { state: { contact: fields } });
     };
 

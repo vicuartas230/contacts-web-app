@@ -8,11 +8,12 @@ export const UpdateContact = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { contact } = location.state;
-    const id = useParams();
+    const id = useParams().id;
     const [isSent, setIsSent] = useState(false);
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (data) => {
+        console.log("DATA: ", id, data);
         try {
             const res = await updateContact(
                 id,
@@ -22,7 +23,6 @@ export const UpdateContact = () => {
                 data.phone,
                 data.city
             );
-            console.log(res);
             setMessage('Contacto editado correctamente!');
             setIsSent(true);
         } catch (error) {
