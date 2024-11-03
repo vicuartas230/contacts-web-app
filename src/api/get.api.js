@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getQuery } from "./helperFunctions";
 
-const baseURL = process.env.ENDPOINT;
+const baseURL = process.env.REACT_APP_ENDPOINT;
 
 export const getContact = async (
     firstName,
