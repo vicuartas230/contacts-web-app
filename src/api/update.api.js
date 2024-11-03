@@ -1,16 +1,23 @@
 import axios from "axios";
+import { createObject } from "./helperFunctions";
 
 const baseURL = "/contacts/";
 
-export const updateContact = (id, firstName='', lastName='', email='', phone='', city='') => {
-    let body = {};
-    console.log(id);
-    if (firstName) body["name"] = {first: firstName};
-    if (lastName) body["name"] = {...body["name"], last: lastName};
-    if (email) body["emails"] = {address: email};
-    if (phone) body["phones"] = {number: phone};
-    if (city) body["address"] = {city: city};
-    console.log(body)
+export const updateContact = (
+    id,
+    firstName,
+    lastName,
+    email,
+    phone,
+    city
+) => {
+    let body = createObject(
+        firstName,
+        lastName,
+        email,
+        phone,
+        city
+    );
     return axios.patch(`${baseURL}${id}`,
         body,
     {

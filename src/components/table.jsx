@@ -17,24 +17,24 @@ export const ContactsTable = ({ tableData }) => {
 
     return (
         <div className="container mt-5">
-            <table className="table">
-                <thead>
-                    <tr className="table-dark">
-                        <th>ID</th>
-                        <th>Nombre(s)</th>
-                        <th>Apellido(s)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableData.map((item) => (
-                        <tr className="table-light" key={item.id}>
-                            <td><button onClick={() => amplifyData(item.id)} className="btn btn-primary">{item.id}</button></td>
-                            <td>{item.lookupName.split(' ')[0] ? item.lookupName.split(' ')[0] : "null"}</td>
-                            <td>{item.lookupName.split(' ')[1] ? item.lookupName.split(' ')[1] : "null"}</td>
+            <div className="card shadow-sm">
+                <table className="table">
+                    <thead>
+                        <tr className="table-primary">
+                            <th>ID</th>
+                            <th>Nombre</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {tableData.map((item) => (
+                            <tr className="table-light" key={item.id}>
+                                <td><button onClick={() => amplifyData(item.id)} className="btn btn-primary">{item.id}</button></td>
+                                <td>{item.lookupName ? item.lookupName : 'null'}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

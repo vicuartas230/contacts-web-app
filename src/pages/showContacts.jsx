@@ -2,6 +2,7 @@ import { ContactsTable } from "../components/table";
 import { useLocation, Link } from "react-router-dom";
 import { Pagination } from "../components/pagination";
 import { useMemo, useState } from "react";
+import { Header } from "../components/header";
 
 export const DisplayContacts = () => {
     const loc = useLocation();
@@ -17,9 +18,7 @@ export const DisplayContacts = () => {
 
     return (
         <>
-            <Link to='/'>Inicio</Link>
-            <hr/>
-            <Link to='/create'>Crear</Link>
+            <Header />
             <ContactsTable
                 tableData={newData}
             />
@@ -29,6 +28,16 @@ export const DisplayContacts = () => {
                 paginate={changePage}
                 currentPage={currentPage}
             />
+            <nav className="container my-4">
+                <ul className="nav justify-content-center">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/"> Consultar Contactos </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/create"> Crear Contacto Nuevo </Link>
+                    </li>
+                </ul>
+            </nav>
         </>
     );
 };

@@ -1,5 +1,3 @@
-
-
 export const Pagination = ({ contactsPerPage, totalContacts, paginate, currentPage }) => {
     const pages = [...Array(Math.ceil(totalContacts / contactsPerPage)).keys()].map(
         (x) => x + 1
@@ -14,7 +12,7 @@ export const Pagination = ({ contactsPerPage, totalContacts, paginate, currentPa
     }
     
     return (
-        <nav aria-label="Page navigation example" className="mx-auto">
+        <nav aria-label="Page navigation example" className="mx-auto mt-3">
             <ul className="pagination justify-content-center">
                 <li className="page-item">
                     <button className="page-link"
@@ -27,7 +25,7 @@ export const Pagination = ({ contactsPerPage, totalContacts, paginate, currentPa
                 {pages.map((num) => (
                     <li className="page-item"
                         key={num}>
-                        <button className={`page-link ${currentPage === num ? 'active' : ''}`}
+                        <button className={`page-link${currentPage === num ? ' active' : ''}`}
                             onClick={() => paginate(num)}
                             disabled={num === currentPage}>
                             {num}
