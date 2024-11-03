@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { getFullData } from "../api/expandData";
 import { useNavigate } from "react-router-dom";
 

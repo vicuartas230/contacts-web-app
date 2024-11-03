@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getQuery } from "./helperFunctions";
 
-const baseURL = "/contacts/";
+const baseURL = process.env.ENDPOINT;
 
 export const getContact = async (
     firstName,
@@ -19,15 +19,9 @@ export const getContact = async (
             city
         );
 
-        return await axios.get(`${baseURL}${q}`, {
-            auth: {
-                username: 'ICXCandidate',
-                password: 'Welcome2024'
-            }
-        });
+        return await axios.get(`${baseURL}${q}`);
 
     } catch (err) {
         console.error("Web service desconectado. Obteniendo datos de la base de datos de respaldo.");
-        // return axios.get(`${backUpURL}`);
     }
 };

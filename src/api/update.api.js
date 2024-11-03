@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createObject } from "./helperFunctions";
 
-const baseURL = "/contacts/";
+const baseURL = process.env.ENDPOINT;
 
 export const updateContact = (
     id,
@@ -18,15 +18,7 @@ export const updateContact = (
         phone,
         city
     );
-    return axios.patch(`${baseURL}${id}`,
+    return axios.patch(
+        `${baseURL}/${id}`,
         body,
-    {
-        auth: {
-            username: 'ICXCandidate',
-            password: 'Welcome2024'
-        },
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-)};
+    )};

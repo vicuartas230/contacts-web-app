@@ -28,7 +28,7 @@ export const UpdateContact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await updateContact(
+            await updateContact(
                 contactId,
                 formData.firstName,
                 formData.lastName,

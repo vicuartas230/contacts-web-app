@@ -53,7 +53,7 @@ export const CreateContact = () => {
             <Header />
             {message && <p className="alert alert-info text-center">{message}</p>}
             {error && <p className="alert alert-danger text-center">{error}</p>}
-            <section className="container my-4 d-flex flex-column">
+            <section className="container my-4 d-flex flex-column align-items-center">
                 <div className="card p-3 shadow-sm">
                     <div className="card-body">
                         <h5 className="card-title text-center">Crear Contacto</h5>

@@ -55,9 +55,9 @@ export const GetContacts = () => {
                         <h5 className="card-title text-center">Consultar Contactos</h5>
                         <form onSubmit={handleSubmit}>
                             <div className="row">
-                                <di className="col">
+                                <div className="col">
                                     <Input label="Nombre(s)" value={formData.firstName} type="text" onChange={handleChange('firstName')} />
-                                </di>
+                                </div>
                                 <div className="col">
                                     <Input label="Apellido(s)" value={formData.lastName} type="text" onChange={handleChange('lastName')} />
                                 </div>

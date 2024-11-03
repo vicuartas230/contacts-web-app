@@ -1,12 +1,7 @@
 import axios from "axios";
 
-const baseURL = '/contacts/';
+const baseURL = process.env.ENDPOINT;
 
 export const deleteContact = id => {
-    return axios.delete(`${baseURL}${id}`, {
-        auth: {
-            username: 'ICXCandidate',
-            password: 'Welcome2024'
-        }
-    });
+    return axios.delete(`${baseURL}/${id}`);
 }

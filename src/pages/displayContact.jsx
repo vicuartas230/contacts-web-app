@@ -15,7 +15,7 @@ export const DisplayContact = () => {
 
     const handleDelete = async () => {
         try {
-            const res = await deleteContact(contactId);
+            await deleteContact(contactId);
             setIsDeleted('Contacto eliminado correctamente!');
             setTimeout(() => {
                 navigate('/');

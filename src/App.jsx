@@ -1,4 +1,3 @@
-import './styles/App.css';
 import { Route, Navigate, Routes, BrowserRouter } from 'react-router-dom';
 import { GetContacts } from './pages/getContacts';
 import { CreateContact } from './pages/createContact';

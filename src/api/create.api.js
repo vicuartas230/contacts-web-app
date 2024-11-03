@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createObject } from "./helperFunctions";
 
-const baseURL = "/contacts";
+const baseURL = process.env.ENDPOINT;
 
 export const createContact = (
     firstName,
@@ -18,13 +18,8 @@ export const createContact = (
         city
     );
     
-    return axios.post(`${baseURL}`,
-        body,
-        {
-            auth:{
-                username: 'ICXCandidate',
-                password: 'Welcome2024'
-            }
-        }
+    return axios.post(
+        `${baseURL}`,
+        body
     );
 };

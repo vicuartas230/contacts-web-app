@@ -1,0 +1,9 @@
+.current {
+    background-color: #3B71CA;
+    color: #fff;
+}
+
+.current:hover {
+    background: #3B71CA;
+    color: #fff;
+}

@@ -1,3 +1,5 @@
+import '../styles/pagination.css';
+
 export const Pagination = ({ contactsPerPage, totalContacts, paginate, currentPage }) => {
     const pages = [...Array(Math.ceil(totalContacts / contactsPerPage)).keys()].map(
         (x) => x + 1
@@ -25,7 +27,7 @@ export const Pagination = ({ contactsPerPage, totalContacts, paginate, currentPa
                 {pages.map((num) => (
                     <li className="page-item"
                         key={num}>
-                        <button className={`page-link${currentPage === num ? ' active' : ''}`}
+                        <button className={`page-link${currentPage === num ? ' current' : ''}`}
                             onClick={() => paginate(num)}
                             disabled={num === currentPage}>
                             {num}
