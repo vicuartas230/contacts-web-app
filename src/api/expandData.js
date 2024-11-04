@@ -6,6 +6,5 @@ export const getFullData = async (id) => {
     const url = `${baseURL}/${id}`
 
     const res = await axios.get(url);
-    console.log(res);
-    return res;
+    return res.data;
 };
