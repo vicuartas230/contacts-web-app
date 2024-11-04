@@ -18,7 +18,7 @@ export const updateContact = (
         phone,
         city
     );
-    return axios.patch(
+    return axios.put(
         `${baseURL}/${id}`,
         body,
     )};
