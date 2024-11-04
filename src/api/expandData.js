@@ -5,6 +5,5 @@ const baseURL = process.env.REACT_APP_ENDPOINT;
 export const getFullData = async (id) => {
     const url = `${baseURL}/${id}`
 
-    const res = await axios.get(url);
-    return JSON.parse(res);
+    return await axios.get(url);
 };
