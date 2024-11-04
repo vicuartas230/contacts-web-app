@@ -5,33 +5,22 @@ export const createObject = (
     phone = '',
     city = ''
 ) => {
-    const body = {
-        name: {
-            first: firstName,
-            last: lastName
-        },
-        phones: [
-            {
-                number: phone,
-                phoneType: {
-                    id: 1
-                }
-            }
-        ],
-        emails: [
-            {
-                address: email,
-                addressType: {
-                    id: 0
-                }
-            }
-        ],
-        address: {
-            city: city,
-            country: {
-                lookupName: "CO"
-            }
-        }
+    const body = {};
+
+    if (firstName || lastName) {
+        body.name = { first: firstName, last: lastName }.filter(Boolean);
+    }
+
+    if (email) {
+        body.emails = { address: email };
+    }
+
+    if (phone) {
+        body.phones = { number: phone };
+    }
+
+    if (city) {
+        body.address = { city: city };
     }
 
     return body;
