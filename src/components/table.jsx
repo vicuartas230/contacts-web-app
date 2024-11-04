@@ -10,7 +10,7 @@ export const ContactsTable = ({ tableData }) => {
             const res = await getFullData(id);
             navigate(`/displayContact/${id}`, { state: { contact: res } })
         } catch (error) {
-            console.error("No se pudo obtener datos.")
+            console.error("No se pudo obtener datos.", error);
         }
     };
 
