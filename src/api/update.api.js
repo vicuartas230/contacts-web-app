@@ -18,7 +18,13 @@ export const updateContact = (
         phone,
         city
     );
-    return axios.put(
+    
+    const res = axios.put(
         `${baseURL}/${id}`,
         body,
-    )};
+    );
+
+    console.log("EDIT RESPONSE: ", res);
+
+    return res;
+};
