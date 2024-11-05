@@ -31,6 +31,7 @@ export const GetContacts = () => {
                 formData.email,
                 formData.phone,
                 formData.city);
+            console.log("FRONTEND RESPONSE: ", res);
             if ("items" in res.data) {
                 if (!res.data.items.length) {
                     setMessage('La búsqueda no arrojó ningún resultado');
