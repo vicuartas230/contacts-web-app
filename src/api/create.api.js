@@ -3,7 +3,7 @@ import { createObject } from "./helperFunctions";
 
 const baseURL = process.env.REACT_APP_ENDPOINT;
 
-export const createContact = (
+export const createContact = async (
     firstName,
     lastName,
     email,
@@ -18,7 +18,7 @@ export const createContact = (
         city
     );
     
-    return axios.post(
+    return await axios.post(
         `${baseURL}`,
         body
     );
