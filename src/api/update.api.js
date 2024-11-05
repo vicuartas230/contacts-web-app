@@ -19,12 +19,19 @@ export const updateContact = async (
         city
     );
     
-    const res = await axios.put(
-        `${baseURL}/${id}`,
-        body,
-    );
+    try {
+        const res = await axios.put(
+            `${baseURL}/${id}`,
+            body,
+        );
 
-    console.log("EDIT RESPONSE: ", res);
-
-    return res;
+        if (res.status != 200) {
+            throw new Error("Request failed");
+        }
+    
+        return res;
+    } catch (error) {
+        console.error("Response error when updating", error);
+        throw error;
+    }
 };
