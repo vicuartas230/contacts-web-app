@@ -8,7 +8,10 @@ export const createObject = (
     const body = {};
 
     if (firstName || lastName) {
-        body.name = { first: firstName, last: lastName }.filter(Boolean);
+        body.name = {
+            ...(firstName && { first: firstName }),
+            ...(lastName && { last: lastName })
+        };
     }
 
     if (email) {
