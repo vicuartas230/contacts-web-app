@@ -15,11 +15,25 @@ export const createObject = (
     }
 
     if (email) {
-        body.emails = { address: email };
+        body.emails = [
+            {
+                address: email,
+                addressType: {
+                    id: 0
+                }
+            }
+        ];
     }
 
     if (phone) {
-        body.phones = { number: phone };
+        body.phones = [
+            {
+                number: phone,
+                phoneType: {
+                    id: 1
+                }
+            }
+        ];
     }
 
     if (city) {
