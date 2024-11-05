@@ -3,7 +3,7 @@ import { createObject } from "./helperFunctions";
 
 const baseURL = process.env.REACT_APP_ENDPOINT;
 
-export const updateContact = (
+export const updateContact = async (
     id,
     firstName,
     lastName,
@@ -19,7 +19,7 @@ export const updateContact = (
         city
     );
     
-    const res = axios.put(
+    const res = await axios.put(
         `${baseURL}/${id}`,
         body,
     );
